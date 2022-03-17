@@ -112,3 +112,8 @@ code {
   color: #F4F4F4;
   opacity: 0.57;
 }
+.timer-pad{
+  background: #363636 0% 0% no-repeat padding-box;
+  width: 70px;
+  height: 70px;
+}

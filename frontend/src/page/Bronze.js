@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Bronze() {
+  const navigate = useNavigate();
+
+  const reserveClick = () => {
+    navigate('/waitingroom');
+  }
+
   return(
     <div className='container-85 m-auto'>
       
@@ -17,7 +25,7 @@ export default function Bronze() {
             <p className='font-face-om text-white font-50 me-2'>FREE</p>
             <p className='font-face-om text-white font-22 pt-3'>LIMITED</p>
           </div>
-          <button className='sub-button font-face-om font-29 border-none mt-2'>
+          <button className='sub-button font-face-om font-29 border-none mt-2' onClick={reserveClick}>
             Reserve Spot
           </button>
         </div>
@@ -49,7 +57,7 @@ export default function Bronze() {
       <p className='dark-pad text-white font-face-om font-32 mt-3' style={{'padding': '9px 0px 9px 21px'}}>
         Ownership Perks
       </p>
-      <img className='mt-3 mb-3' src='./MM_Bright_logo.png' alt='' width='100%' height='52px' />
+      <img className='mt-3 mb-3' src='./Banner.png' alt='' width='100%' height='52px' />
 
     </div>
   )
