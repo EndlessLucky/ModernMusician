@@ -48,7 +48,7 @@ export default function Timer(props) {
 
   return (
     <div className='text-white d-flex'>
-      <div className='col' style={{'padding-left': '15px'}}>
+      <div className='col' style={{'paddingLeft': '15px'}}>
         <div className='timer-pad font-40 text-center'>
           {countdown.days.toLocaleString("en-US", {
             minimumIntegerDigits: 2,

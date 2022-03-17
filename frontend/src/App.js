@@ -7,6 +7,8 @@ import Bronze from './page/Bronze';
 import Diamond from './page/Diamond';
 import Waitingroom from './page/Waitingroom';
 import Available from './page/Available';
+import Claimbronze from './page/Claimbronze';
+import Claimdiamond from './page/Claimdiamond';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/diamond" element={<Diamond />} />
             <Route path="/waitingroom" element={<Waitingroom />} />
             <Route path="/available" element={<Available />} />
+            <Route path="/claimbronze" element={<Claimbronze />} />
+            <Route path="/claimdiamond" element={<Claimdiamond />} />
           </Routes>
         <Footer/>
       </div>
