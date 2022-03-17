@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Claimbronze() {
+  const navigate = useNavigate();
+
+  const claimClick = () => {
+    navigate('/collection');
+  }
+
   return(
     <div className='container-85 m-auto'>
       
@@ -17,7 +25,7 @@ export default function Claimbronze() {
             <p className='font-face-om text-white font-50 me-2'>FREE</p>
             <p className='font-face-om text-white font-22 pt-3'>LIMITED</p>
           </div>
-          <button className='sub-button font-face-om font-29 border-none mt-2'>
+          <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
             Claim Free
           </button>
         </div>

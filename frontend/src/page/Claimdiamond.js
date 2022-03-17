@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Claimdiamond() {
+  const navigate = useNavigate();
+
+  const claimClick = () => {
+    navigate('/collection');
+  }
 
   return(
     <div className='container-85 m-auto'>
@@ -18,7 +25,7 @@ export default function Claimdiamond() {
             <p className='font-face-om text-white font-50 me-2'>$5,000</p>
             <p className='font-face-om text-white font-22 pt-3'>USD</p>
           </div>
-          <button className='sub-button font-face-om font-29 border-none mt-2'>
+          <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
             Buy Now
           </button>
         </div>
