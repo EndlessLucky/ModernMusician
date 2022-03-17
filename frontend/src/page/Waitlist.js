@@ -11,6 +11,10 @@ export default function Waitlist() {
     navigate('/bronze');
   }
 
+  const diamondClick = () => {
+    navigate('/diamond');
+  }
+
   return(
     <div className='content-container m-auto'>
       <h1 className='text-white font-face-om text-center font-60 mt-5'>
@@ -36,7 +40,7 @@ export default function Waitlist() {
         </div>
         <div className='col-md-6'>
           <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
-          <button className='sub-button font-face-om font-22 border-none mt-3'>
+          <button className='sub-button font-face-om font-22 border-none mt-3' onClick={diamondClick}>
             DIAMOND (1 only)
           </button>
         </div>

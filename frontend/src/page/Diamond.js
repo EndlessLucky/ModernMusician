@@ -1,21 +1,21 @@
-export default function Bronze() {
+export default function Diamond() {
   return(
     <div className='container-85 m-auto'>
       
       <div className='row mt-5'>
         <div className='col-md-6'>
-          <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
+          <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
         </div>
         <div className='col-md-6'>
           <p className='text-white font-face-om font-50'>Cue No Ego</p>
           <div className='d-flex'>
-            <img className='me-2' src='./Bronze_Fan_Tier.png' alt='' width='26px' height='27px' />
-            <p className='text-white font-18 me-4'>Bronze 1/100</p>
+            <img className='me-2' src='./Diamond_Fan_Tier.png' alt='' width='26px' height='27px' />
+            <p className='text-white font-18 me-4'>Diamond 1/1</p>
             <p className='text-white font-10 version-text'>S1</p>
           </div>
           <div className='d-flex'>
-            <p className='font-face-om text-white font-50 me-2'>FREE</p>
-            <p className='font-face-om text-white font-22 pt-3'>LIMITED</p>
+            <p className='font-face-om text-white font-50 me-2'>$5,000</p>
+            <p className='font-face-om text-white font-22 pt-3'>USD</p>
           </div>
           <button className='sub-button font-face-om font-29 border-none mt-2'>
             Reserve Spot
@@ -29,19 +29,19 @@ export default function Bronze() {
       <div className='row'>
         <div className='col-md-4'>
           <div className='dark-pad text-center pt-2 pb-2'>
-            <h3 className='font-20 text-white font-face-om'>100</h3>
+            <h3 className='font-20 text-white font-face-om'>1</h3>
             <p className='font-10 text-lightgray small-text-color mb-0'>RELICS AVAILABLE</p>
           </div>          
         </div>  
         <div className='col-md-4'>
           <div className='dark-pad text-center pt-2 pb-2'>
-            <h3 className='font-20 text-white font-face-om'>$5</h3>
+            <h3 className='font-20 text-white font-face-om'>$5,000</h3>
             <p className='font-10 text-lightgray small-text-color mb-0'>ASKING PRICE</p>
           </div>          
         </div>
         <div className='col-md-4'>
           <div className='dark-pad text-center pt-2 pb-2'>
-            <h3 className='font-20 text-white font-face-om'>1.1x</h3>
+            <h3 className='font-20 text-white font-face-om'>3x</h3>
             <p className='font-10 text-lightgray small-text-color mb-0'>POINT MULTIPLIER</p>
           </div>          
         </div>
