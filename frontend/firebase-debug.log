@@ -1,0 +1,102 @@
+[debug] [2022-03-17T15:34:31.939Z] ----------------------------------------------------------------------
+[debug] [2022-03-17T15:34:31.941Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-03-17T15:34:31.942Z] CLI Version:   10.2.2
+[debug] [2022-03-17T15:34:31.942Z] Platform:      win32
+[debug] [2022-03-17T15:34:31.942Z] Node Version:  v14.17.3
+[debug] [2022-03-17T15:34:31.943Z] Time:          Thu Mar 17 2022 11:34:31 GMT-0400 (Eastern Daylight Time)
+[debug] [2022-03-17T15:34:31.944Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-17T15:34:32.010Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-03-17T15:34:32.105Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-17T15:34:32.106Z] > authorizing via signed-in user (105.olivesoft@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\Project\32_Michael(Flow)\ModernMusician\frontend
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-03-17T15:34:43.741Z] > refreshing access token with scopes: []
+[debug] [2022-03-17T15:34:43.742Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-03-17T15:34:48.816Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2022-03-17T15:34:51.912Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:145:12)
+    at refreshTokens (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:485:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Client.getAccessToken (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:147:23)
+    at async Client.addAuthHeader (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:138:21)
+    at async Client.request (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:94:34)
+    at async getProjectPage (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:233:17)
+    at async getFirebaseProjectPage (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:250:23)
+    at async selectProjectInteractively (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:95:41)
+    at async Object.doSetup [as project] (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:88:27)
+    at async init (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:19:9)
+[error] 
+[error] Error: Failed to list Firebase projects. See firebase-debug.log for more info.
+[debug] [2022-03-17T15:35:19.950Z] ----------------------------------------------------------------------
+[debug] [2022-03-17T15:35:19.952Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-03-17T15:35:19.952Z] CLI Version:   10.2.2
+[debug] [2022-03-17T15:35:19.952Z] Platform:      win32
+[debug] [2022-03-17T15:35:19.952Z] Node Version:  v14.17.3
+[debug] [2022-03-17T15:35:19.953Z] Time:          Thu Mar 17 2022 11:35:19 GMT-0400 (Eastern Daylight Time)
+[debug] [2022-03-17T15:35:19.953Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-17T15:35:19.955Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-03-17T15:35:19.975Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-17T15:35:19.975Z] > authorizing via signed-in user (105.olivesoft@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\Project\32_Michael(Flow)\ModernMusician\frontend
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-03-17T15:35:29.637Z] > refreshing access token with scopes: []
+[debug] [2022-03-17T15:35:29.638Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-03-17T15:35:33.660Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2022-03-17T15:35:39.382Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:145:12)
+    at refreshTokens (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:485:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Client.getAccessToken (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:147:23)
+    at async Client.addAuthHeader (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:138:21)
+    at async Client.request (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:94:34)
+    at async getProjectPage (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:233:17)
+    at async getFirebaseProjectPage (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:250:23)
+    at async selectProjectInteractively (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:95:41)
+    at async Object.doSetup [as project] (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:88:27)
+    at async init (C:\Users\105.DESKTOP-3SISK4I\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:19:9)
+[error] 
+[error] Error: Failed to list Firebase projects. See firebase-debug.log for more info.

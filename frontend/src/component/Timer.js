@@ -48,13 +48,16 @@ export default function Timer(props) {
 
   return (
     <div className='text-white d-flex'>
-      <div className='col'>
+      <div className='col' style={{'padding-left': '15px'}}>
         <div className='timer-pad font-40 text-center'>
           {countdown.days.toLocaleString("en-US", {
             minimumIntegerDigits: 2,
             useGrouping: false,
           })}
-        </div>        
+        </div>
+        <p className='small-text-color text-center content-container mt-3'>
+          DAY
+        </p>        
       </div>
       <div className='col'>
         <div className='timer-pad font-40 text-center'>
@@ -62,7 +65,10 @@ export default function Timer(props) {
             minimumIntegerDigits: 2,
             useGrouping: false,
           })}
-        </div>        
+        </div> 
+        <p className='small-text-color text-center content-container mt-3'>
+          HOURS
+        </p>       
       </div>
       <div className='col'>
         <div className='timer-pad font-40 text-center'>
@@ -70,7 +76,10 @@ export default function Timer(props) {
             minimumIntegerDigits: 2,
             useGrouping: false,
           })}
-        </div>        
+        </div>    
+        <p className='small-text-color text-center content-container mt-3'>
+          MINUTES
+        </p>    
       </div>
       <div className='col'>
         <div className='timer-pad font-40 text-center'>
@@ -78,7 +87,10 @@ export default function Timer(props) {
             minimumIntegerDigits: 2,
             useGrouping: false,
           })}
-        </div>        
+        </div>   
+        <p className='small-text-color text-center content-container mt-3'>
+          SECONDS
+        </p>     
       </div>
     </div>
   );

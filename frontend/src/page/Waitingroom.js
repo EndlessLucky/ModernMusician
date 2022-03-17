@@ -3,7 +3,7 @@ import Timer from '../component/Timer'
 export default function Waitingroom() {
   return(
     <div className='container-85 m-auto'>
-      <h1 className='text-white font-face-om text-center font-60 mt-5'>
+      <h1 className='text-white font-face-om text-center font-60 mt-5 mb-5'>
         Drop Goes Live in…
       </h1>
       <Timer deadline={new Date("2022-04-08T01:30:22")} />

@@ -113,7 +113,8 @@ code {
   opacity: 0.57;
 }
 .timer-pad{
+  padding-top: 5px;
   background: #363636 0% 0% no-repeat padding-box;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
 }
