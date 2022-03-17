@@ -36,4 +36,24 @@ code {
   font-size: 28px!important;
   font-weight: bold!important;
 }
+.font-18{
+  font-size: 18px!important;
+  font-weight: bold!important;
+}
+.font-13{
+  font-size:13px!important;
+}
+.font-30{
+  font-size:30px!important;
+}
+.point-block{
+  padding-top:25px;
+  background: transparent linear-gradient(89deg, #6D47D5 0%, #593CA8 100%) 0% 0% no-repeat padding-box;
+  width: 119px!important;
+}
+.footer{
+  padding: 30px 10px 30px 30px;
+  background: #393939 0% 0% no-repeat padding-box;
+  border-radius: 10px 0px 0px 0px;
+}
 
