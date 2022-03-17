@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Waitlist() {
+  const navigate = useNavigate();
+
+  const registerClick = () => {
+    navigate('/preorder');
+  }
+
   return(
     <div className='content-container m-auto'>
       <h1 className='text-white font-face-om text-center font-60 mt-5'>
@@ -12,7 +20,7 @@ export default function Waitlist() {
           <source src="" type="video/mp4"/>
         </video>
       </div>      
-      <button className='main-button font-face-om font-26 border-none mt-4'>
+      <button className='main-button font-face-om font-26 border-none mt-4' onClick={registerClick}>
         Get a FREE NFT - Register Now
       </button>
       <div className='row mt-5'>
