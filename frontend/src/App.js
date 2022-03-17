@@ -3,6 +3,7 @@ import Header from './layout/Header';
 import Footer from './layout/Footer';
 import Waitlist from './page/Waitlist';
 import Preorder from './page/Preorder';
+import Bronze from './page/Bronze';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Waitlist />} />
             <Route path="/preorder" element={<Preorder />} />
+            <Route path="/bronze" element={<Bronze />} />
           </Routes>
         <Footer/>
       </div>

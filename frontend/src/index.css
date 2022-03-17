@@ -34,11 +34,20 @@ code {
 .font-60{
   font-size: 60px!important;
 }
+.font-50{
+  font-size: 50px!important;
+}
 .font-40{
   font-size: 40px!important;
 }
+.font-32{
+  font-size:32px!important;
+}
 .font-30{
   font-size:30px!important;
+}
+.font-29{
+  font-size:29px!important;
 }
 .font-28{
   font-size: 28px!important;
@@ -50,12 +59,17 @@ code {
 .font-22{
   font-size:22px!important;
 }
+.font-20{
+  font-size:20px!important;
+}
 .font-18{
   font-size: 18px!important;
-  font-weight: bold!important;
 }
 .font-13{
   font-size:13px!important;
+}
+.font-10{
+  font-size:10px!important;
 }
 
 .point-block{
@@ -71,6 +85,9 @@ code {
 .content-container{
   width: 75%;
 }
+.container-85{
+  width: 85%;
+}
 .main-button{
   padding: 20px 48px 20px 48px;
   background: #F9D85E 0% 0% no-repeat padding-box;
@@ -81,4 +98,17 @@ code {
   width:100%;
   background: #F9D85E 0% 0% no-repeat padding-box;
   border-radius: 10px;
+}
+.version-text{
+  padding: 3px 10px 0px 10px;
+  border: solid 2px white;
+  border-radius: 5px;
+}
+.dark-pad{
+  background: #363636 0% 0% no-repeat padding-box;
+  border-radius: 10px;
+}
+.small-text-color{
+  color: #F4F4F4;
+  opacity: 0.57;
 }
