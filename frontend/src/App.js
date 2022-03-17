@@ -6,6 +6,7 @@ import Preorder from './page/Preorder';
 import Bronze from './page/Bronze';
 import Diamond from './page/Diamond';
 import Waitingroom from './page/Waitingroom';
+import Available from './page/Available';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/bronze" element={<Bronze />} />
             <Route path="/diamond" element={<Diamond />} />
             <Route path="/waitingroom" element={<Waitingroom />} />
+            <Route path="/available" element={<Available />} />
           </Routes>
         <Footer/>
       </div>

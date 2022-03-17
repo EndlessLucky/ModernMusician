@@ -3,7 +3,7 @@ export default function Footer(){
     <div className='d-flex mt-3'>
       <div className='footer d-flex'>
         <img src='Silver_Fan_Tier.png' alt='' width='61px' height='64px' />
-        <div className='col' style={{'margin-left': '20px'}}>
+        <div className='col' style={{'marginLeft': '20px'}}>
           <p className='text-white font-18 m-0'>Michael Walker</p>
           <p className='text-white font-13 m-0'>
             You’re only 75 points away from unlocking Gold!
