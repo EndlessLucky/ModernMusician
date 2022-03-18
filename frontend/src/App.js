@@ -10,6 +10,7 @@ import Available from './page/Available';
 import Claimbronze from './page/Claimbronze';
 import Claimdiamond from './page/Claimdiamond';
 import Collection from './page/Collection';
+import Marketplace from './page/Marketplace';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/claimbronze" element={<Claimbronze />} />
             <Route path="/claimdiamond" element={<Claimdiamond />} />
             <Route path="/collection" element={<Collection />} />
+            <Route path="/marketplace" element={<Marketplace />} />
           </Routes>
         <Footer/>
       </div>

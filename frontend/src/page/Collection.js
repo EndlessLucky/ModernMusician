@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Collection() {
+  const navigate = useNavigate();
+
+  const marketplaceClick = () => {
+    navigate('/marketplace');
+  }
 
   return(
     <>
@@ -12,19 +19,19 @@ export default function Collection() {
         <div className='row mt-5 mb-5'>
           <div className='col-md-6'>
             <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
-            <button className='dark-pad text-white font-face-om font-28 border-none mt-3' style={{'padding': '20px 25px 20px 25px'}}>
+            <button className='dark-pad text-white font-face-om font-28 border-none mt-3' style={{'padding': '20px 25px 20px 25px'}} onClick={marketplaceClick}>
               More Details
             </button>
-            <button className='sub-button font-face-om font-28 border-none mt-3'>
+            <button className='sub-button font-face-om font-28 border-none mt-3' onClick={marketplaceClick}>
               Marketplace
             </button>
           </div>
           <div className='col-md-6'>
             <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
-            <button className='dark-pad text-white font-face-om font-28 border-none mt-3' style={{'padding': '20px 25px 20px 25px'}}>
+            <button className='dark-pad text-white font-face-om font-28 border-none mt-3' style={{'padding': '20px 25px 20px 25px'}} onClick={marketplaceClick}>
               More Details
             </button>
-            <button className='sub-button font-face-om font-28 border-none mt-3'>
+            <button className='sub-button font-face-om font-28 border-none mt-3' onClick={marketplaceClick}>
               Marketplace
             </button>
           </div>
