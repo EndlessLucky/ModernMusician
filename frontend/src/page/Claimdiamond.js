@@ -6,10 +6,9 @@ export default function Claimdiamond() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
 
-  const claimClick = () => {
-    setShow(true)
-  }
+  const claimClick = () => setShow(true);
   const handleClose = () => setShow(false);
+  const buyClick = () => navigate('/collection');
 
   return(
     <div className='container-85 m-auto'>
@@ -234,7 +233,7 @@ export default function Claimdiamond() {
             </Accordion.Item>
           </Accordion>
 
-          <Button className="buy-modal">
+          <Button className="buy-modal" onClick={buyClick}>
             Buy For $5,000 USD
           </Button>
         </Modal.Body>
