@@ -105,8 +105,12 @@ code {
   border-radius: 5px;
 }
 .dark-pad{
-  background: #363636 0% 0% no-repeat padding-box;
-  border-radius: 10px;
+  background: #363636 0% 0% no-repeat padding-box!important;
+  border-radius: 10px!important;
+}
+.card-pad{
+  background: #484848 0% 0% no-repeat padding-box!important;
+  border-radius: 10px 10px 10px 10px!important;
 }
 .small-text-color{
   color: #F4F4F4;
@@ -117,4 +121,11 @@ code {
   background: #363636 0% 0% no-repeat padding-box;
   width: 80px;
   height: 80px;
+}
+.accordion-button{
+  background: #363636 0% 0% no-repeat padding-box!important;
+  color: white!important;
+  font-family: "OswaldMedium";
+  font-size: 32px!important;
+  border-radius: 10px!important;
 }

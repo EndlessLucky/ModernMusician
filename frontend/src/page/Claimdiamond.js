@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Card, Accordion } from 'react-bootstrap';
 
 export default function Claimdiamond() {
   const navigate = useNavigate();
@@ -31,9 +32,47 @@ export default function Claimdiamond() {
         </div>
       </div>
 
-      <p className='dark-pad text-white font-face-om font-32 mt-5' style={{'padding': '9px 0px 9px 21px'}}>
-        NFT Details
-      </p>
+      <Card className='dark-pad mt-5 mb-3'>
+        <Card.Header as="h2" className='font-face-om text-white'>Description</Card.Header>
+        <Card.Body className='card-pad'>
+          <Card.Text className='text-white'>
+            “Cue No Ego” – The awakening of unity consciousness. The symbiosis of organic and digital intelligence as life becomes aware of itself.
+          </Card.Text>
+        </Card.Body>
+      </Card>
+
+      <Accordion defaultActiveKey="1" className='mb-3'>
+        <Accordion.Item eventKey="0" className='card-pad'>
+          <Accordion.Header className='font-face-om text-white'>NFT Details</Accordion.Header>
+          <Accordion.Body className='text-white'>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Artist</p>
+              <p className='mb-1'>Cue No Ego</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Title</p>
+              <p className='mb-1'>Awaening</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Rarity</p>
+              <p className='mb-1'>Hall of Fame</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Rank</p>
+              <p className='mb-1'>Diamond</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Series</p>
+              <p className='mb-1'>Series 1</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Release Date</p>
+              <p className='mb-1'>March 31, 2022</p>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+
       <div className='row'>
         <div className='col-md-4'>
           <div className='dark-pad text-center pt-2 pb-2'>
@@ -54,9 +93,38 @@ export default function Claimdiamond() {
           </div>          
         </div>
       </div>
-      <p className='dark-pad text-white font-face-om font-32 mt-3' style={{'padding': '9px 0px 9px 21px'}}>
-        Ownership Perks
-      </p>
+
+      <Accordion defaultActiveKey="1" className='mb-3 mt-3'>
+        <Accordion.Item eventKey="0" className='card-pad'>
+          <Accordion.Header className='font-face-om text-white'>Ownership Perks</Accordion.Header>
+          <Accordion.Body className='text-white'>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Artist</p>
+              <p className='mb-1'>Cue No Ego</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Title</p>
+              <p className='mb-1'>Awaening</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Rarity</p>
+              <p className='mb-1'>Hall of Fame</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Rank</p>
+              <p className='mb-1'>Diamond</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Series</p>
+              <p className='mb-1'>Series 1</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <p className='mb-1'>Release Date</p>
+              <p className='mb-1'>March 31, 2022</p>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
       <img className='mt-3 mb-3' src='./Banner.png' alt='' width='100%' height='52px' />
 
     </div>
