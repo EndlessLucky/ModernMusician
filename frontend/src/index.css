@@ -15,9 +15,6 @@ code {
     monospace;
 }
 
-.font-face-om {
-  font-family: "OswaldMedium";
- }
 .main-container{
   width: 535px;
   background: #1F1F1F 0% 0% no-repeat padding-box;
@@ -72,6 +69,9 @@ code {
   font-size:10px!important;
 }
 
+.font-face-om {
+  font-family: "OswaldMedium";
+ }
 .point-block{
   padding-top:25px;
   background: transparent linear-gradient(89deg, #6D47D5 0%, #593CA8 100%) 0% 0% no-repeat padding-box;
@@ -126,6 +126,19 @@ code {
   background: #363636 0% 0% no-repeat padding-box!important;
   color: white!important;
   font-family: "OswaldMedium";
-  font-size: 32px!important;
+  font-size: 18px!important;
   border-radius: 10px!important;
+}
+.modal-content{
+  background: #272727 0% 0% no-repeat padding-box!important;
+  box-shadow: 0px 3px 6px #00000029!important;
+  border-radius: 20px!important;
+  color: white!important;
+}
+.buy-modal{
+  padding: 20px 35px 20px 35px!important;
+  background: #6850EA 0% 0% no-repeat padding-box!important;
+  border: 1px solid #3A2B8B!important;
+  border-radius: 5px!important;
+  font-size: 26px!important;
 }
