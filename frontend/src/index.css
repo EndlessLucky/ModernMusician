@@ -53,6 +53,9 @@ code {
 .font-26{
   font-size:26px!important;
 }
+.font-24{
+  font-size:24px!important;
+}
 .font-22{
   font-size:22px!important;
 }
@@ -81,6 +84,18 @@ code {
   padding: 30px 10px 30px 30px;
   background: #393939 0% 0% no-repeat padding-box;
   border-radius: 10px 0px 0px 0px;
+}
+.auth-block{
+  width: 100px;
+  height:120px;
+  padding-top:25px;
+  background: transparent linear-gradient(89deg, #6D47D5 0%, #593CA8 100%) 0% 0% no-repeat padding-box;
+}
+.auth-footer{
+  padding-top:20px;
+  padding-left:20px;
+  width:90%;
+  background: #393939 0% 0% no-repeat padding-box;
 }
 .content-container{
   width: 75%;
@@ -141,4 +156,35 @@ code {
   border: 1px solid #3A2B8B!important;
   border-radius: 5px!important;
   font-size: 26px!important;
+}
+.fb-button{
+  border: 0px solid!important;
+  padding: 15px 20px 15px 20px!important;
+  width:100%;
+  background: transparent linear-gradient(90deg, #4363A7 0%, #345BAC 88%, #3357A5 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.fb-block{
+  padding-top:30px;
+  padding-left:30px;
+  width:30%;
+  background: #4363A7 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.email-button{
+  border: 0px solid!important;
+  padding: 15px 20px 15px 20px!important;
+  width:100%;
+  background: transparent linear-gradient(90deg, #404040 0%, #393838 92%, #363636 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.email-block{
+  padding-top:30px;
+  padding-left:30px;
+  width:30%;
+  background: #404040 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.policy-pad{
+  border-top: 1px solid white;
 }
