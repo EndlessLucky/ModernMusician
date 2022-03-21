@@ -176,12 +176,12 @@ export default function Claimdiamond() {
           </Accordion>
 
           <Accordion defaultActiveKey="1" className='mb-3'>
-            <Accordion.Item eventKey="0" className='card-pad'>
+            <Accordion.Item eventKey="0" className='card-pad' style={{'maxWidth': '302px'}}>
               <Accordion.Header className='font-face-om text-white font-18'>
                 History
               </Accordion.Header>
-              <Accordion.Body className='text-white'>
-                <Table responsive="sm" className='text-white'>
+              <Accordion.Body>
+                <Table responsive className='text-white'>
                   <thead>
                     <tr>
                       <th>BUYER</th>
@@ -217,7 +217,7 @@ export default function Claimdiamond() {
                       <td>Ringo Starr</td>
                       <td>$15,308.41 USD</td>
                       <td>1</td>
-                      <td>1</td>
+                      <td>1</td>         
                       <td>Oct 09, 1967 10:29 PM</td>
                     </tr>
                     <tr>
