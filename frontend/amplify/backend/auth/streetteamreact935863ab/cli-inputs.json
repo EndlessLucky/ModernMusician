@@ -1,0 +1,98 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "streetteamreact935863ab_identitypool_935863ab",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "street935863ab",
+    "userPoolName": "streetteamreact935863ab_userpool_935863ab",
+    "autoVerifiedAttributes": [
+      "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+      "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+      "email"
+    ],
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientLambdaRole": "street935863ab_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "authSelections": "identityPoolAndUserPool",
+    "resourceName": "streetteamreact935863ab",
+    "serviceName": "Cognito",
+    "useDefault": "defaultSocial",
+    "sharedId": "935863ab",
+    "userPoolGroupList": [
+      "everyone"
+    ],
+    "userPoolGroups": true,
+    "usernameAttributes": [
+      "email"
+    ],
+    "adminQueries": false,
+    "hostedUI": true,
+    "hostedUIDomainName": "streetteamreactbd40b2f8-bd40b2f8",
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
+    "authProvidersUserPool": [
+      "Facebook"
+    ],
+    "authProviders": [],
+    "triggers": {
+      "PostConfirmation": [
+        "add-to-group"
+      ]
+    },
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": false,
+    "useEnabledMfas": false,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "streetteamreact935863abPostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "permissions": [
+      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
+    ],
+    "authTriggerConnections": [
+      "{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"streetteamreact935863abPostConfirmation\"}"
+    ],
+    "facebookAppId": "1889301381171290",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://street-team.ngrok.io/login/\",\"https://app.modern-musician.com/login/\",\"https://dev.modern-musician.com/login/\"],\"LogoutURLs\":[\"https://street-team.ngrok.io/login/\",\"https://app.modern-musician.com/login/\",\"https://dev.modern-musician.com/login/\"]}",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    }
+  }
+}

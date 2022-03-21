@@ -1,0 +1,8 @@
+{
+    "Version": 5,
+    "ElasticsearchWarning": true,
+    "StackMapping": {
+        "QueryEnduserCompletedActionsByActionButtonResolver": "EnduserCompletedActions",
+        "QueryEnduserPageSubscriptionByReferralEnduserResolver": "EnduserPageSubscription"
+    }
+}

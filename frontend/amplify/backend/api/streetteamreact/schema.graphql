@@ -1,0 +1,352 @@
+type Artist
+  @model
+  @aws_iam
+  @aws_cognito_user_pools
+  @key(name: "byRoute", fields: ["route"], queryField: "ArtistByRoute")
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  artistName: String
+  "genre should eventually be more like tags than just a string"
+  genre: String
+  "eventually might want this to be using an image type instead of just a URL string..."
+  profilePicture: String
+  actionPages: [ActionPage] @connection(keyName: "byArtist",fields:["id"])
+  tags: [EnduserTag] @connection(keyName: "byArtist",fields:["id"])
+  "route is used to route to specific pages"
+  route: String
+  integrations: [ArtistIntegrations] @connection(keyName: "byArtist", fields:["id"])
+}
+
+"""
+ArtistIntegrations type houses information about an artists 3rd party integration tools
+current security model is to be only accessible by the owner of the record
+might want to think about making this create, update and delete only so that no one can read the api keys client side -SG
+"""
+type ArtistIntegrations
+  @model
+    @aws_iam
+    @aws_cognito_user_pools
+    @auth(
+      rules: [
+        { allow: owner, operations: [create, read, update, delete] }
+      ]
+    )
+    @key(name: "byArtist", fields: ["artistID", "id"])
+    @key(name: "byServiceAccountId", fields: ["serviceAccountId", "serviceName"])
+    @key(name: "byServiceApiUrl", fields: ["serviceApiUrl", "serviceName"])
+    {
+    """
+    Artist User manages an Artist Type giving them permissions to access and edit that artists records
+    Right now artist users and artists are one-to-one, in the future probably want a single artist user to be able to manage multiple artists
+    """
+    id: ID!
+    artistID: ID
+    artist: Artist @connection(fields: ["artistID"])
+    serviceName: String
+    serviceApiKey: String
+    serviceAccountId: String
+    serviceAccountFriendlyName: String
+    serviceApiUrl: String
+  }
+
+type Enduser
+  @model
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  username: String
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  profileName: String
+  "eventually might want this to be using an image type instead of just a URL string..."
+  profilePicture: String
+  profileDescription: String
+  profileSocialLink: String
+  EnduserPageSubscription: [EnduserPageSubscription]
+    @connection(keyName: "byEnduser", fields: ["id"])
+  referredSubscribers: [EnduserPageSubscription]
+    @connection(keyName: "byReferralEnduser",fields: ["id"])
+  integrations: [EnduserIntegrations] @connection(keyName: "byEnduser", fields:["id"])
+  tags: [TagEnduserConnector] @connection(keyName: "byEnduser",fields:["id"])
+}
+
+type ArtistUser
+  @model
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+    ]
+  )
+  @key(name: "byArtist", fields: ["artistID", "id"])
+  @key(name: "byFacebookUserID", fields: ["facebookUserID", "id"])
+  {
+  """
+  Artist User manages an Artist Type giving them permissions to access and edit that artists records
+  Right now artist users and artists are one-to-one, in the future probably want a single artist user to be able to manage multiple artists
+  Also, in the future we'll want to build out a per user integrations data structure. Right now we're just storing this data on the ArtistUser record
+  Permissions are set up such that only the user can view/edit their data (this is particularly important with the user's FB tokens)
+  """
+  id: ID!
+  username: String
+  firstName: String
+  lastName: String
+  email: String
+  phoneNumber: String
+  artistID: ID
+  artist: Artist @connection(fields: ["artistID"])
+  actionPages: [ActionPage] @connection(keyName: "byCreatorUser", fields: ["id"])
+  facebookUserID: String
+  facebookLongLivedUserAccessToken: String
+}
+
+"ActionPage Data Types"
+type ActionPage
+  @model
+  @key(name: "byArtist", fields: ["artistID", "heading"], queryField: "ActionPagesByArtist")
+  @key(name: "byCreatorUser", fields: ["creatorUserID"])
+  @key(name: "byRoute", fields: ["pageRoute"],queryField: "ActionPagesByRoute")
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  artistID: ID
+  artist: Artist @connection(fields: ["artistID"])
+  creatorUserID: ID
+  creatorUser: ArtistUser @connection(fields: ["creatorUserID"])
+  actionButtons: [ActionPageButton]
+    @connection(keyName: "byActionPage", fields: ["id"])
+  pictureID: ID
+  picture: Picture @connection(fields: ["pictureID"])
+  subscribers: [EnduserPageSubscription]
+    @connection(keyName: "byActionPage", fields: ["id"])
+  """
+  Configurable Details
+  """
+  pageTitle: String
+  heading: String
+  subheading: String
+  pageRoute: String
+}
+
+type EnduserPageSubscription
+  @model
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+    ]
+  )
+  @key(name: "byActionPage", fields: ["actionPageID"], queryField: "EnduserPageSubscriptionByActionPage")
+  @key(name: "byEnduser", fields: ["enduserID"], queryField: "EnduserPageSubscriptionByEnduser")
+  @key(name: "byFacebookPageScopedId", fields: ["facebookPageScopedId"], queryField: "EnduserPageSubscriptionByFacebookPageScopedId")
+  @key(
+    name: "byReferralEnduser",
+    fields: ["referralEnduserID"], 
+    queryField: "EnduserPageSubscriptionByReferralEnduser"
+    ) {
+  """
+  Connects the ActionPage to the users participating in that page
+  note: completedActionButtonIDs maybe should just be a connection to ActionButtons, but for simplicity right now we're just storing the IDs on this record, not a connection to the entire object
+  """
+  id: ID!
+  actionPageID: ID!
+  enduserID: ID!
+  referralEnduserID: ID
+  actionPage: ActionPage! @connection(fields: ["actionPageID"])
+  enduser: Enduser! @connection(fields: ["enduserID"])
+  referralEnduser: Enduser @connection(fields: ["referralEnduserID"])
+  facebookPageScopedId: String
+  enduserPageSubscriptionCompletedActions: [EnduserPageSubscriptionCompletedActions] @connection(keyName: "byEnduserPageSubscription", fields: ["id"])
+  enduserTotalPoints: Int
+  enduserRanking: String
+}
+
+type ActionPageButton
+  @model
+  @key(name: "byActionPage", fields: ["actionPageID"])
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  actionPageID: ID!
+  actionpage: ActionPage @connection(fields: ["actionPageID"])
+  enduserPageSubscriptionCompletedActions: [EnduserPageSubscriptionCompletedActions] @connection(keyName: "byAction", fields: ["id"])
+  """
+  Configurable Details
+  """
+  preActionText: String
+  postActionText: String
+  buttonIcon: String
+  backgroundColor: String
+  textColor: String
+  pointValue: Int
+  position: Int
+  targetURL: String
+  """
+  serviceAction should eventually be its own graphql type when we start building that feature. this is a placeholder json object
+  """
+  serviceAction: String
+}
+
+type EnduserPageSubscriptionCompletedActions
+  @model
+  @key(name: "byAction", fields: ["actionID"], queryField: "EnduserCompletedActionsByActionButton")
+  @key(name: "byEnduserPageSubscription", fields: ["enduserPageSubscriptionID"], queryField: "EnduserCompletedActionsByEnduserPageSubscription")
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+    ]
+  ) {
+  enduserPageSubscriptionID: ID!
+  enduserPageSubscription: EnduserPageSubscription @connection(fields: ["enduserPageSubscriptionID"])
+  actionID: ID!
+  action: ActionPageButton @connection(fields: ["actionID"])
+  isExpired: Boolean
+}
+
+type EnduserArtistSubscription
+  @model
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+    ]
+  )
+  @key(name: "byArtist", fields: ["artistID"], queryField: "EnduserArtistSubscriptionsByArtist")
+  @key(name: "byEnduser", fields: ["enduserID"], queryField: "EnduserArtistSubscriptionsByEnduser")
+  @key(
+    name: "byReferralEnduser",
+    fields: ["referralEnduserID"], 
+    queryField: "EnduserPageSubscriptionByReferralEnduser"
+    ) {
+  """
+  Connects the Artist to the endUsers following that artist
+  """
+  id: ID!
+  artistID: ID!
+  enduserID: ID!
+  referralEnduserID: ID
+  artist: Artist! @connection(fields: ["artistID"])
+  enduser: Enduser! @connection(fields: ["enduserID"])
+  referralEnduser: Enduser @connection(fields: ["referralEnduserID"])
+}
+
+"""
+EnduserTags are a way for artists to track users based on any variety of metadata, likely to include a) specific actions they want to track b) tiers of fans c) location groupings etc
+Tags are intended to be unique to each artist account, meaning tags are not shared across accounts
+"""
+type EnduserTag @model 
+  @key(name: "byArtist", fields: ["artistID"], queryField: "TagsByArtist"){
+  id: ID!
+  tag: String
+  artistID: ID
+  artist: [Artist] @connection(fields: ["artistID"])
+  endusers: [TagEnduserConnector] @connection(keyName: "byTag",fields:["id"])
+}
+
+"Many-To-Many Connector between tags & endusers"
+type TagEnduserConnector
+  @model(queries:null)
+  @key(name:"byTag", fields: ["tagID", "enduserID"])
+  @key(name:"byEnduser", fields: ["enduserID", "tagID"]){
+    id: ID!
+    enduserID: ID!
+    tagID: ID!
+    enduser: Enduser @connection(fields: ["enduserID"])
+    tag: EnduserTag @connection(fields: ["tagID"])
+  }
+
+type EnduserIntegrations
+@model
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  )
+  @key(name: "byEnduser", fields: ["enduserID"], queryField: "EnduserIntegrationsByEnduser"){
+  """
+  Enduser (fan) Integration record such as spotify, facebook etc
+  """
+  id: ID!
+  enduserID: ID!
+  enduser: Enduser! @connection(fields: ["enduserID"])
+  serviceName: String
+  serviceApiKey: String
+  serviceAccountId: String
+  serviceAccountFriendlyName: String
+  serviceApiUrl: String
+}
+
+type Picture
+  @model
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  publicUrl: String
+  name: String
+  owner: String
+  visibility: Visibility
+  createdAt: String
+  file: S3Object
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+enum Visibility {
+  public
+  private
+}

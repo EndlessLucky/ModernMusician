@@ -1,0 +1,18 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "streetteamreact935863ab",
+  "functionName": "streetteamreact935863abPostConfirmation",
+  "resourceName": "streetteamreact935863abPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "streetteamreact935863abPostConfirmation",
+  "skipEdit": true,
+  "GROUP": "everybody",
+  "enableCors": false
+}

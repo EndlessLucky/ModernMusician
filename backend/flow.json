@@ -34,14 +34,14 @@
       "source": "./cli/contracts/ModernMusician.cdc",
       "aliases": {
         "emulator": "0xf8d6e0586b0a20c7",
-        "testnet": "0x4d79d7aa8c56c615"
+        "testnet": "0x52b1f9cebc7c0947"
       }
     },
     "ModernMusicianStorefront": {
       "source": "./cli/contracts/ModernMusicianStorefront.cdc",
       "aliases": {
         "emulator": "0xf8d6e0586b0a20c7",
-        "testnet": "0x4d79d7aa8c56c615"
+        "testnet": "0x52b1f9cebc7c0947"
       }
     }
   },
@@ -56,8 +56,8 @@
       "key": "84f82df6790f07b281adb5bbc848bd6298a2de67f94bdfac7a400d5a1b893de5"
     },
     "testnet-account": {
-      "address": "0x4d79d7aa8c56c615",
-      "key": "757efb0cbdaf4259f752912ff721fd80f686518ceab1833e006af841a81fc439"
+      "address": "0x52b1f9cebc7c0947",
+      "key": "7b04a6e6a2f96a7ef1447429bf92bd99ea4fd57adfdab44785632bdeb2a66a56"
     }
   },
   "deployments": {
