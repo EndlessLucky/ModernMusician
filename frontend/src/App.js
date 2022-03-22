@@ -1,4 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import "./config";
 import Waitlist from './page/Waitlist';
 import Bronze from './page/Bronze';
 import Diamond from './page/Diamond';

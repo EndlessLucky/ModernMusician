@@ -66,9 +66,6 @@
     }, 
     "testnet": {
       "testnet-account": ["ModernMusician", "ModernMusicianStorefront"]
-    },
-    "mainnet": {
-      "mainnet-account": ["ModernMusician", "ModernMusicianStorefront"]
     }
   }
 }

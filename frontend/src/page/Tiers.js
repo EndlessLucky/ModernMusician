@@ -1,12 +1,20 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import * as fcl from "@onflow/fcl";
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import Timer from '../component/Timer';
+import { GET_ACCOUNT } from "../cadence/get_account";
 
 export default function Tiers() {
   const navigate = useNavigate();
   const location = useLocation();
   const status = location.state.status;
+  const [nfts, setNfts] = useState([]);
+
+  useEffect(() => {
+    getAccountInfoQuery();
+  }, []);
 
   const bronzeClick = () => {
     navigate('/bronze');
@@ -15,6 +23,16 @@ export default function Tiers() {
   const diamondClick = () => {
     navigate('/diamond');
   }
+
+  const getAccountInfoQuery = async () => {
+    const res = await fcl.query({
+      cadence: GET_ACCOUNT,
+      args: (arg, t) => [arg('0x4c4a03d405ed9520', t.Address)],
+    });
+    console.log("query result : ", res);   
+
+    setNfts(res);
+  };
 
   return(
     <>
