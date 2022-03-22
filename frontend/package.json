@@ -1,9 +1,9 @@
 {
-  "name": "modernmusician-react",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aws-amplify/ui-react": "^2.10.3",
+    "@aws-amplify/ui-react": "^1.0.6",
     "@chakra-ui/react": "^1.7.4",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
