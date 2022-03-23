@@ -10,7 +10,7 @@ import { GET_ACCOUNT } from "../cadence/get_account";
 export default function Tiers() {
   const navigate = useNavigate();
   const location = useLocation();
-  const status = location.state.status;
+  const authStatus = location.state.authStatus;
   const [nfts, setNfts] = useState([]);
   const [userNFTs, setUserNFTs] = useState([]);
   const [user, setUser] = useState({ loggedIn: null });
@@ -27,11 +27,10 @@ export default function Tiers() {
   }, [user]);
 
   const bronzeClick = (status) => {
-    console.log(status);
-    // navigate('/bronze');
+    navigate('/nftdetailbronze', {state: {status: status}});
   }
   const diamondClick = (status) => {
-    // navigate('/diamond');
+    navigate('/nftdetaildiamond', {state: {status: status}});
   }
 
   const getAccountInfoQuery = async () => {
@@ -54,13 +53,11 @@ export default function Tiers() {
     setUserNFTs(res);
   };
 
-  console.log(userNFTs);
-
   return(
     <>
       <Header/>
       {/* Register status */}
-      {status === 'register' &&
+      {authStatus === 'register' &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             You Are Signed Up!
@@ -88,7 +85,7 @@ export default function Tiers() {
       }
 
       {/* Login status */}
-      {(status === 'login' && diffInSeconds > 0 && userNFTs === 0) &&
+      {(authStatus === 'login' && diffInSeconds > 0 && userNFTs === 0) &&
         <div className='container-85 m-auto'>
           <h1 className='text-white font-face-om text-center font-60 mt-5 mb-5'>
             Drop Goes Live in…
@@ -112,7 +109,7 @@ export default function Tiers() {
       }    
 
       {/* Available status */}
-      {(status === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs <= 0) &&
+      {(authStatus === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs <= 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             Own Music NFTs
@@ -140,7 +137,7 @@ export default function Tiers() {
       }
 
       {/* Owned status */}
-      {(status === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs > 0) &&
+      {(authStatus === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs > 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             Own Music NFTs
@@ -168,7 +165,7 @@ export default function Tiers() {
       }
 
       {/* Soldout status */}
-      {(status === 'login' && nfts.length === 0) &&
+      {(authStatus === 'login' && nfts.length === 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             Own Music NFTs

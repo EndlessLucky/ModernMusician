@@ -20,11 +20,11 @@ export default function Authenticate() {
   const navigate = useNavigate();
 
   const registerClick = () =>{
-    navigate('/tiers', {state: {status: 'register'}});
+    navigate('/tiers', {state: {authStatus: 'register'}});
   }
 
   const loginClick = () =>{
-    navigate('/tiers', {state: {status: 'login'}});
+    navigate('/tiers', {state: {authStatus: 'login'}});
   }
 
   return(
