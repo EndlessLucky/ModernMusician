@@ -14,7 +14,7 @@ export default function Tiers() {
   const [nfts, setNfts] = useState([]);
   const [userNFTs, setUserNFTs] = useState([]);
   const [user, setUser] = useState({ loggedIn: null });
-  const liveDate = new Date("2022-04-28T01:30:22");
+  const liveDate = new Date("2022-02-28T01:30:22");
   const currentTime = new Date().getTime();
   const diffInSeconds = differenceInSeconds(liveDate, currentTime);
 
@@ -40,7 +40,9 @@ export default function Tiers() {
     });
     // console.log("query result : ", res);   
 
-    setNfts(res);
+    // setNfts(res);
+    var temp = ['1', '2']
+    setNfts(temp);
   };
   const getNFTAccount = async () => {
     if (user.loggedIn === null) return;
@@ -50,8 +52,12 @@ export default function Tiers() {
     });
     // console.log("query result : ", res);   
 
-    setUserNFTs(res);
+    // setUserNFTs(res);
+    var temp = ['1', '2']
+    setUserNFTs(temp);
   };
+
+  console.log(userNFTs.length);
 
   return(
     <>
@@ -109,7 +115,7 @@ export default function Tiers() {
       }    
 
       {/* Available status */}
-      {(authStatus === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs <= 0) &&
+      {(authStatus === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs.length <= 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             Own Music NFTs
@@ -137,7 +143,7 @@ export default function Tiers() {
       }
 
       {/* Owned status */}
-      {(authStatus === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs > 0) &&
+      {(authStatus === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs.length > 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             Own Music NFTs

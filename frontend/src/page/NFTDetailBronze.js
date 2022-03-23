@@ -6,13 +6,41 @@ import Footer from '../layout/Footer';
 
 export default function NFTDetailBronze() {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [registerShow, setRegisterShow] = useState(false);
+  const [loginShow, setLoginShow] = useState(false);
+  const [availableShow, setAvailableShow] = useState(false);
+  const [ownedShow, setOwnedShow] = useState(false);
   const location = useLocation();
   const status = location.state.status;
+  const [registerId, setRegisterId] = useState(0);
+  const [shareText, setShareText] = useState('Copy Share Link');
 
-  const claimClick = () => setShow(true);
-  const handleClose = () => setShow(false);
-  const buyClick = () => navigate('/collection');
+  const claimRegisterClick = () => setRegisterShow(true);
+  const handleRegisterClose = () => {
+    setRegisterId(0);
+    setRegisterShow(false);
+  }
+  const registerNextClick = () => {
+    var temp = registerId;
+    temp ++;
+    setRegisterId(temp);
+  }
+
+  const claimLoginClick = (status) =>{
+    if(status === 'login'){
+      setLoginShow(true);
+    }else{
+      setAvailableShow(true);
+    }
+  } 
+  const handleLoginClose = () => setLoginShow(false);
+
+  const handleAvailableClose = () => setAvailableShow(false);
+
+  const claimOwnedClick = () => setOwnedShow(true);
+  const handleOwnedClose = () => setOwnedShow(false);
+
+  const copyLinkClick = () => setShareText('Copied!');
 
   console.log(status);
 
@@ -32,14 +60,14 @@ export default function NFTDetailBronze() {
               <p className='text-white font-18 me-4 mb-0'>Bronze 1/100</p>
               <p className='text-white font-10 version-text mb-0'>S1</p>
             </div>
-            
+
             {status === 'register' &&
             <>
               <div className='d-flex'>
                 <p className='font-face-om text-white font-50 me-2 mb-1'>FREE</p>
                 <p className='font-face-om text-white font-22 pt-3 mb-1'>LIMITED</p>
               </div>
-              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimRegisterClick}>
                 Reserve Spot
               </button>
             </>              
@@ -51,7 +79,7 @@ export default function NFTDetailBronze() {
                 <p className='font-face-om text-white font-50 me-2 mb-1'>FREE</p>
                 <p className='font-face-om text-white font-22 pt-3 mb-1'>LIMITED</p>
               </div>
-              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={() => claimLoginClick(status)}>
                 Claim Free
               </button>
             </>
@@ -62,7 +90,7 @@ export default function NFTDetailBronze() {
               <div className='d-flex'>
                 <p className='font-face-om text-white font-50 me-2 mb-1'>OWNED</p>
               </div>
-              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimOwnedClick}>
                 Share Relic
               </button>
             </>              
@@ -73,7 +101,7 @@ export default function NFTDetailBronze() {
               <div className='d-flex'>
                 <p className='font-face-om text-white font-50 me-2 mb-1'>SOLD OUT</p>
               </div>
-              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimSoldClick}>
                 Get Notified
               </button>
             </>              
@@ -176,15 +204,156 @@ export default function NFTDetailBronze() {
         </Accordion>
         <img className='mt-3 mb-3' src='./Banner.png' alt='' width='100%' height='52px' />
 
-        <Modal show={show} onHide={handleClose} centered>
-          <Modal.Body className='m-auto'>
-            <img src='./NFT_Box.png' alt='' width='302px' height='259px' />
+        <Modal show={registerShow} onHide={handleRegisterClose} centered>
+          <Modal.Body className='m-auto' style={{'width':'70%'}}>
+            <img src='./Bronze_Cube_Only.png' alt='' width='302px' height='259px' />
+
+            {registerId === 0 &&
+            <>
+              <p className='font-face-om font-26 mb-2'>Cue No Ego</p>
+              <h1 className='font-face-om mb-3'>Hypocrite</h1>
+  
+              <div className='d-flex'>
+                <img className='me-2' src='./Bronze_Fan_Tier.png' alt='' width='26px' height='27px' />
+                <p className='text-white font-18 me-4'>Bronze 1/100</p>
+                <p className='text-white font-10 version-text'>S1</p>
+              </div>
+  
+              <Accordion defaultActiveKey="1" className='mb-3'>
+                <Accordion.Item eventKey="0" className='card-pad'>
+                  <Accordion.Header className='font-face-om text-white font-18'>
+                    Details
+                  </Accordion.Header>
+                  <Accordion.Body className='text-white'>
+                    <div className='d-flex justify-content-between'>
+                      <p className='mb-1'>Artist</p>
+                      <p className='mb-1'>Cue No Ego</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                      <p className='mb-1'>Title</p>
+                      <p className='mb-1'>Hypocrite</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                      <p className='mb-1'>Rarity</p>
+                      <p className='mb-1'>Common</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                      <p className='mb-1'>Rank</p>
+                      <p className='mb-1'>Bronze</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                      <p className='mb-1'>Series</p>
+                      <p className='mb-1'>Series 1</p>
+                    </div>
+                    <div className='d-flex justify-content-between'>
+                      <p className='mb-1'>Release Date</p>
+                      <p className='mb-1'>March 31, 2022</p>
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+  
+              <Accordion defaultActiveKey="1" className='mb-3'>
+                <Accordion.Item eventKey="0" className='card-pad'>
+                  <Accordion.Header className='font-face-om text-white font-18'>
+                    History
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <Table responsive className='text-white'>
+                      <thead>
+                        <tr>
+                          <th>BUYER</th>
+                          <th>PRICE</th>
+                          <th>SERIES</th>
+                          <th>SERIAL</th>
+                          <th>DATE/TIME</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Michael Walker</td>
+                          <td>$0.05 USD</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>Mar 31, 2022 6:12 PM</td>
+                        </tr>
+                        <tr>
+                          <td>Paul McCartney</td>
+                          <td>$1,508,358.10 USD</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>Mar 21, 2022 2:53 AM</td>
+                        </tr>
+                        <tr>
+                          <td>George Harrison</td>
+                          <td>$126,203.83 USD</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>May 08, 1970 11:57 AM</td>
+                        </tr>
+                        <tr>
+                          <td>Ringo Starr</td>
+                          <td>$15,308.41 USD</td>
+                          <td>1</td>
+                          <td>1</td>         
+                          <td>Oct 09, 1967 10:29 PM</td>
+                        </tr>
+                        <tr>
+                          <td>John Lennon</td>
+                          <td>$5,000 USD</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>Jul 06, 1957 5:10 PM</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+  
+              <Button className="buy-modal" onClick={registerNextClick}>
+                Reserve Your Spot
+              </Button>
+            </>              
+            }
+
+            {registerId === 1 &&
+            <>
+              <p className='text-white font-face-om font-32 text-center'>
+                Enter Your Phone<br></br> Number To Reserve<br></br> Your Spot In Line
+              </p>
+              <input className='form-control phone-input' type='number' placeholder='Enter Your Phone Number...'/>
+              <Button className="buy-modal mb-3" onClick={registerNextClick}>
+                YES! Notify me
+              </Button>
+              <div className='d-flex justify-content-center'>
+                <a className='small-text-color' href='/'>Your personal info is private & safe</a>
+              </div>              
+            </>
+            }
+            
+            {registerId === 2 &&
+            <>
+              <p className='text-white font-face-om font-32 text-center'>
+                You're all set! We will let you know when the drop is happening
+              </p>
+              <Button className="buy-modal mb-3">
+                Keep Browsing
+              </Button>
+            </>
+            }
+          </Modal.Body>
+        </Modal>
+
+        <Modal show={loginShow} onHide={handleLoginClose} centered>
+          <Modal.Body className='m-auto' style={{'width':'70%'}}>
+            <img src='./Bronze_Cube_Only.png' alt='' width='302px' height='259px' />
             <p className='font-face-om font-26 mb-2'>Cue No Ego</p>
-            <h1 className='font-face-om mb-3'>Awakening</h1>
+            <h1 className='font-face-om mb-3'>Hypocrite</h1>
 
             <div className='d-flex'>
-              <img className='me-2' src='./Diamond_Fan_Tier.png' alt='' width='26px' height='27px' />
-              <p className='text-white font-18 me-4'>Diamond 1/1</p>
+              <img className='me-2' src='./Bronze_Fan_Tier.png' alt='' width='26px' height='27px' />
+              <p className='text-white font-18 me-4'>Bronze 1/100</p>
               <p className='text-white font-10 version-text'>S1</p>
             </div>
 
@@ -200,15 +369,15 @@ export default function NFTDetailBronze() {
                   </div>
                   <div className='d-flex justify-content-between'>
                     <p className='mb-1'>Title</p>
-                    <p className='mb-1'>Awaening</p>
+                    <p className='mb-1'>Hypocrite</p>
                   </div>
                   <div className='d-flex justify-content-between'>
                     <p className='mb-1'>Rarity</p>
-                    <p className='mb-1'>Hall of Fame</p>
+                    <p className='mb-1'>Common</p>
                   </div>
                   <div className='d-flex justify-content-between'>
                     <p className='mb-1'>Rank</p>
-                    <p className='mb-1'>Diamond</p>
+                    <p className='mb-1'>Bronze</p>
                   </div>
                   <div className='d-flex justify-content-between'>
                     <p className='mb-1'>Series</p>
@@ -223,7 +392,7 @@ export default function NFTDetailBronze() {
             </Accordion>
 
             <Accordion defaultActiveKey="1" className='mb-3'>
-              <Accordion.Item eventKey="0" className='card-pad' style={{'maxWidth': '302px'}}>
+              <Accordion.Item eventKey="0" className='card-pad'>
                 <Accordion.Header className='font-face-om text-white font-18'>
                   History
                 </Accordion.Header>
@@ -279,12 +448,236 @@ export default function NFTDetailBronze() {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-
-            <Button className="buy-modal" onClick={buyClick}>
-              Buy For $5,000 USD
-            </Button>
           </Modal.Body>
+          <div className='d-flex justify-content-center'>
+            <Button className="buy-modal mb-4" style={{'width': '80%'}}>
+              Enter the Waiting Room
+            </Button> 
+          </div>          
         </Modal>
+
+        <Modal show={availableShow} onHide={handleAvailableClose} centered>
+          <Modal.Body className='m-auto' style={{'width':'70%'}}>
+            <img src='./Bronze_Cube_Only.png' alt='' width='302px' height='259px' />
+            <p className='font-face-om font-26 mb-2'>Cue No Ego</p>
+            <h1 className='font-face-om mb-3'>Hypocrite</h1>
+
+            <div className='d-flex'>
+              <img className='me-2' src='./Bronze_Fan_Tier.png' alt='' width='26px' height='27px' />
+              <p className='text-white font-18 me-4'>Bronze 1/100</p>
+              <p className='text-white font-10 version-text'>S1</p>
+            </div>
+
+            <Accordion defaultActiveKey="1" className='mb-3'>
+              <Accordion.Item eventKey="0" className='card-pad'>
+                <Accordion.Header className='font-face-om text-white font-18'>
+                  Details
+                </Accordion.Header>
+                <Accordion.Body className='text-white'>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Artist</p>
+                    <p className='mb-1'>Cue No Ego</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Title</p>
+                    <p className='mb-1'>Hypocrite</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Rarity</p>
+                    <p className='mb-1'>Common</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Rank</p>
+                    <p className='mb-1'>Bronze</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Series</p>
+                    <p className='mb-1'>Series 1</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Release Date</p>
+                    <p className='mb-1'>March 31, 2022</p>
+                  </div>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+
+            <Accordion defaultActiveKey="1" className='mb-3'>
+              <Accordion.Item eventKey="0" className='card-pad'>
+                <Accordion.Header className='font-face-om text-white font-18'>
+                  History
+                </Accordion.Header>
+                <Accordion.Body>
+                  <Table responsive className='text-white'>
+                    <thead>
+                      <tr>
+                        <th>BUYER</th>
+                        <th>PRICE</th>
+                        <th>SERIES</th>
+                        <th>SERIAL</th>
+                        <th>DATE/TIME</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Michael Walker</td>
+                        <td>$0.05 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Mar 31, 2022 6:12 PM</td>
+                      </tr>
+                      <tr>
+                        <td>Paul McCartney</td>
+                        <td>$1,508,358.10 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Mar 21, 2022 2:53 AM</td>
+                      </tr>
+                      <tr>
+                        <td>George Harrison</td>
+                        <td>$126,203.83 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>May 08, 1970 11:57 AM</td>
+                      </tr>
+                      <tr>
+                        <td>Ringo Starr</td>
+                        <td>$15,308.41 USD</td>
+                        <td>1</td>
+                        <td>1</td>         
+                        <td>Oct 09, 1967 10:29 PM</td>
+                      </tr>
+                      <tr>
+                        <td>John Lennon</td>
+                        <td>$5,000 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Jul 06, 1957 5:10 PM</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </Modal.Body>
+          <div className='d-flex justify-content-center'>
+            <Button className="buy-modal mb-4" style={{'width': '80%'}}>
+              Claim For FREE (Limited)
+            </Button> 
+          </div>          
+        </Modal>
+
+        <Modal show={ownedShow} onHide={handleOwnedClose} centered>
+          <Modal.Body className='m-auto' style={{'width':'70%'}}>
+            <img src='./Bronze_Cube_Only.png' alt='' width='302px' height='259px' />
+            <p className='font-face-om font-26 mb-2'>Cue No Ego</p>
+            <h1 className='font-face-om mb-3'>Hypocrite</h1>
+
+            <div className='d-flex'>
+              <img className='me-2' src='./Bronze_Fan_Tier.png' alt='' width='26px' height='27px' />
+              <p className='text-white font-18 me-4'>Bronze 1/100</p>
+              <p className='text-white font-10 version-text'>S1</p>
+            </div>
+
+            <Accordion defaultActiveKey="1" className='mb-3'>
+              <Accordion.Item eventKey="0" className='card-pad'>
+                <Accordion.Header className='font-face-om text-white font-18'>
+                  Details
+                </Accordion.Header>
+                <Accordion.Body className='text-white'>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Artist</p>
+                    <p className='mb-1'>Cue No Ego</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Title</p>
+                    <p className='mb-1'>Hypocrite</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Rarity</p>
+                    <p className='mb-1'>Common</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Rank</p>
+                    <p className='mb-1'>Bronze</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Series</p>
+                    <p className='mb-1'>Series 1</p>
+                  </div>
+                  <div className='d-flex justify-content-between'>
+                    <p className='mb-1'>Release Date</p>
+                    <p className='mb-1'>March 31, 2022</p>
+                  </div>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+
+            <Accordion defaultActiveKey="1" className='mb-3'>
+              <Accordion.Item eventKey="0" className='card-pad'>
+                <Accordion.Header className='font-face-om text-white font-18'>
+                  History
+                </Accordion.Header>
+                <Accordion.Body>
+                  <Table responsive className='text-white'>
+                    <thead>
+                      <tr>
+                        <th>BUYER</th>
+                        <th>PRICE</th>
+                        <th>SERIES</th>
+                        <th>SERIAL</th>
+                        <th>DATE/TIME</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Michael Walker</td>
+                        <td>$0.05 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Mar 31, 2022 6:12 PM</td>
+                      </tr>
+                      <tr>
+                        <td>Paul McCartney</td>
+                        <td>$1,508,358.10 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Mar 21, 2022 2:53 AM</td>
+                      </tr>
+                      <tr>
+                        <td>George Harrison</td>
+                        <td>$126,203.83 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>May 08, 1970 11:57 AM</td>
+                      </tr>
+                      <tr>
+                        <td>Ringo Starr</td>
+                        <td>$15,308.41 USD</td>
+                        <td>1</td>
+                        <td>1</td>         
+                        <td>Oct 09, 1967 10:29 PM</td>
+                      </tr>
+                      <tr>
+                        <td>John Lennon</td>
+                        <td>$5,000 USD</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Jul 06, 1957 5:10 PM</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </Modal.Body>
+          <div className='d-flex justify-content-center'>
+            <Button className="buy-modal mb-4" style={{'width': '80%'}} onClick={copyLinkClick}>
+              {shareText}
+            </Button> 
+          </div>          
+        </Modal>
+
       </div>
     <Footer/>
     </>    
