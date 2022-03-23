@@ -14,7 +14,7 @@ export default function Tiers() {
   const [nfts, setNfts] = useState([]);
   const [userNFTs, setUserNFTs] = useState([]);
   const [user, setUser] = useState({ loggedIn: null });
-  const liveDate = new Date("2022-03-22T01:30:22");
+  const liveDate = new Date("2022-04-28T01:30:22");
   const currentTime = new Date().getTime();
   const diffInSeconds = differenceInSeconds(liveDate, currentTime);
 
@@ -85,7 +85,7 @@ export default function Tiers() {
       }
 
       {/* Login status */}
-      {(authStatus === 'login' && diffInSeconds > 0 && userNFTs === 0) &&
+      {(authStatus === 'login' && diffInSeconds > 0) &&
         <div className='container-85 m-auto'>
           <h1 className='text-white font-face-om text-center font-60 mt-5 mb-5'>
             Drop Goes Live in…
@@ -165,7 +165,7 @@ export default function Tiers() {
       }
 
       {/* Soldout status */}
-      {(authStatus === 'login' && nfts.length === 0) &&
+      {(authStatus === 'login' && diffInSeconds <= 0 && nfts.length === 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             Own Music NFTs
