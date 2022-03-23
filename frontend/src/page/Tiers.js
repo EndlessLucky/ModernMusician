@@ -40,9 +40,9 @@ export default function Tiers() {
     });
     // console.log("query result : ", res);   
 
-    // setNfts(res);
-    var temp = ['1', '2']
-    setNfts(temp);
+    setNfts(res);
+    // var temp = ['1', '2']
+    // setNfts(temp);
   };
   const getNFTAccount = async () => {
     if (user.loggedIn === null) return;

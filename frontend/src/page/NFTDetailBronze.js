@@ -10,20 +10,28 @@ export default function NFTDetailBronze() {
   const [loginShow, setLoginShow] = useState(false);
   const [availableShow, setAvailableShow] = useState(false);
   const [ownedShow, setOwnedShow] = useState(false);
+  const [soldShow, setSoldShow] = useState(false);
   const location = useLocation();
   const status = location.state.status;
   const [registerId, setRegisterId] = useState(0);
+  const [soldId, setSoldId] = useState(0);
   const [shareText, setShareText] = useState('Copy Share Link');
 
   const claimRegisterClick = () => setRegisterShow(true);
   const handleRegisterClose = () => {
     setRegisterId(0);
+    setSoldId(0);
     setRegisterShow(false);
   }
   const registerNextClick = () => {
     var temp = registerId;
     temp ++;
     setRegisterId(temp);
+  }
+  const soldNextClick = () => {
+    var temp = soldId;
+    temp ++;
+    setSoldId(temp);
   }
 
   const claimLoginClick = (status) =>{
@@ -41,6 +49,9 @@ export default function NFTDetailBronze() {
   const handleOwnedClose = () => setOwnedShow(false);
 
   const copyLinkClick = () => setShareText('Copied!');
+
+  const claimSoldClick = () => setSoldShow(true);
+  const handleSoldClose = () => setSoldShow(false);
 
   console.log(status);
 
@@ -676,6 +687,39 @@ export default function NFTDetailBronze() {
               {shareText}
             </Button> 
           </div>          
+        </Modal>
+
+        <Modal show={soldShow} onHide={handleSoldClose} centered>
+          <Modal.Body className='m-auto' style={{'width':'70%'}}>
+            <img src='./Bronze_Cube_Only.png' alt='' width='302px' height='259px' />
+            
+            {soldId === 0 &&
+            <>
+              <p className='text-white font-face-om font-32 text-center'>
+                <b>Sold Out!</b> Want to make sure you don't miss out on Cue No Ego relic drops?
+              </p>
+              <input className='form-control phone-input' type='number' placeholder='Enter Your Phone Number...'/>
+              <Button className="buy-modal mb-3" onClick={soldNextClick}>
+                YES! Notify me
+              </Button>
+              <div className='d-flex justify-content-center'>
+                <a className='small-text-color' href='/'>Your personal info is private & safe</a>
+              </div>
+            </>
+            }
+
+            {soldId === 1 &&
+            <>
+              <p className='text-white font-face-om font-32 text-center'>
+                Thanks! We will let you know when the next drop is happening 🤘
+              </p>
+              <Button className="buy-modal mb-3">
+                Keep Browsing
+              </Button>
+            </>
+            }
+                         
+          </Modal.Body>
         </Modal>
 
       </div>
