@@ -12,20 +12,26 @@ export default function Tiers() {
   const location = useLocation();
   const status = location.state.status;
   const [nfts, setNfts] = useState([]);
+  const [userNFTs, setUserNFTs] = useState([]);
+  const [user, setUser] = useState({ loggedIn: null });
   const liveDate = new Date("2022-03-22T01:30:22");
   const currentTime = new Date().getTime();
   const diffInSeconds = differenceInSeconds(liveDate, currentTime);
 
   useEffect(() => {
+    fcl.currentUser.subscribe(setUser);
     getAccountInfoQuery();
   }, []);
+  useEffect(() => {
+    getNFTAccount();
+  }, [user]);
 
-  const bronzeClick = () => {
-    navigate('/bronze');
+  const bronzeClick = (status) => {
+    console.log(status);
+    // navigate('/bronze');
   }
-
-  const diamondClick = () => {
-    navigate('/diamond');
+  const diamondClick = (status) => {
+    // navigate('/diamond');
   }
 
   const getAccountInfoQuery = async () => {
@@ -37,10 +43,23 @@ export default function Tiers() {
 
     setNfts(res);
   };
+  const getNFTAccount = async () => {
+    if (user.loggedIn === null) return;
+    const res = await fcl.query({
+      cadence: GET_ACCOUNT,
+      args: (arg, t) => [arg(user?.addr, t.Address)],
+    });
+    // console.log("query result : ", res);   
+
+    setUserNFTs(res);
+  };
+
+  console.log(userNFTs);
 
   return(
     <>
       <Header/>
+      {/* Register status */}
       {status === 'register' &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
@@ -53,13 +72,13 @@ export default function Tiers() {
             <div className='row mt-5 mb-5'>
               <div className='col-md-6'>
                 <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
-                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={bronzeClick}>
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => bronzeClick('register')}>
                   Reserve Spot
                 </button>
               </div>
               <div className='col-md-6'>
                 <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
-                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={diamondClick}>
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => diamondClick('register')}>
                   Reserve Spot
                 </button>
               </div>
@@ -67,7 +86,9 @@ export default function Tiers() {
           </div>
         </>        
       }
-      {(status === 'login' && diffInSeconds > 0) &&
+
+      {/* Login status */}
+      {(status === 'login' && diffInSeconds > 0 && userNFTs === 0) &&
         <div className='container-85 m-auto'>
           <h1 className='text-white font-face-om text-center font-60 mt-5 mb-5'>
             Drop Goes Live in…
@@ -76,20 +97,22 @@ export default function Tiers() {
           <div className='row mt-5 mb-5'>
             <div className='col-md-6'>
               <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
-              <button className='sub-button font-face-om font-28 border-none mt-3'>
+              <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => bronzeClick('login')}>
                 FREE (100 only)
               </button>
             </div>
             <div className='col-md-6'>
               <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
-              <button className='sub-button font-face-om font-28 border-none mt-3'>
+              <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => diamondClick('login')}>
                 DIAMOND (1 only)
               </button>
             </div>
           </div>    
         </div>        
       }    
-      {(status === 'login' && diffInSeconds <= 0 && nfts.length > 0) &&
+
+      {/* Available status */}
+      {(status === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs <= 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
             Own Music NFTs
@@ -101,13 +124,13 @@ export default function Tiers() {
             <div className='row mt-5 mb-5'>
               <div className='col-md-6'>
                 <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
-                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={bronzeClick}>
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => bronzeClick('available')}>
                   Claim Free
                 </button>
               </div>
               <div className='col-md-6'>
                 <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
-                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={diamondClick}>
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => diamondClick('available')}>
                   Buy Now
                 </button>
               </div>
@@ -115,6 +138,36 @@ export default function Tiers() {
           </div>
         </>
       }
+
+      {/* Owned status */}
+      {(status === 'login' && diffInSeconds <= 0 && nfts.length > 0 && userNFTs > 0) &&
+        <>
+          <h1 className='text-white font-face-om text-center font-60 mt-5'>
+            Own Music NFTs
+          </h1>
+          <div className='content-container m-auto'>
+            <h3 className='text-white font-face-om font-40 text-center'>
+              From Cue No Ego
+            </h3>
+            <div className='row mt-5 mb-5'>
+              <div className='col-md-6'>
+                <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => bronzeClick('owned')}>
+                  Claim Free
+                </button>
+              </div>
+              <div className='col-md-6'>
+                <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => diamondClick('owned')}>
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      }
+
+      {/* Soldout status */}
       {(status === 'login' && nfts.length === 0) &&
         <>
           <h1 className='text-white font-face-om text-center font-60 mt-5'>
@@ -127,13 +180,13 @@ export default function Tiers() {
             <div className='row mt-5 mb-5'>
               <div className='col-md-6'>
                 <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
-                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={bronzeClick}>
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => bronzeClick('soldout')}>
                   SOLD OUT
                 </button>
               </div>
               <div className='col-md-6'>
                 <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
-                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={diamondClick}>
+                <button className='sub-button font-face-om font-28 border-none mt-3' onClick={() => diamondClick('soldout')}>
                   SOLD OUT
                 </button>
               </div>
