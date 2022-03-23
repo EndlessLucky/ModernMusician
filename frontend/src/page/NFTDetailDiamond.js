@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Card, Accordion, Modal, Button, Table } from 'react-bootstrap';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
@@ -7,10 +7,14 @@ import Footer from '../layout/Footer';
 export default function NFTDetailDiamond() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const location = useLocation();
+  const status = location.state.status;
 
   const claimClick = () => setShow(true);
   const handleClose = () => setShow(false);
   const buyClick = () => navigate('/collection');
+
+  console.log(status);
 
   return(
     <>
@@ -21,19 +25,59 @@ export default function NFTDetailDiamond() {
             <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
           </div>
           <div className='col-md-6'>
-            <p className='text-white font-face-om font-50'>Cue No Ego</p>
+            <p className='text-white font-face-om font-26 mb-0'>Cue No Ego</p>
+            <p className='text-white font-face-om font-50'>Awakening</p>
             <div className='d-flex'>
               <img className='me-2' src='./Diamond_Fan_Tier.png' alt='' width='26px' height='27px' />
-              <p className='text-white font-18 me-4'>Diamond 1/1</p>
-              <p className='text-white font-10 version-text'>S1</p>
+              <p className='text-white font-18 me-4 mb-0'>Diamond 1/1</p>
+              <p className='text-white font-10 version-text mb-0'>S1</p>
             </div>
-            <div className='d-flex'>
-              <p className='font-face-om text-white font-50 me-2'>$5,000</p>
-              <p className='font-face-om text-white font-22 pt-3'>USD</p>
-            </div>
-            <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
-              Buy Now
-            </button>
+            
+            {status === 'register' &&
+            <>
+              <div className='d-flex'>
+                <p className='font-face-om text-white font-50 me-2 mb-1'>$5,000</p>
+                <p className='font-face-om text-white font-22 pt-3 mb-1'>USD</p>
+              </div>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+                Reserve Spot
+              </button>
+            </>              
+            }
+
+            {(status === 'login' || status === 'available') &&
+            <>
+              <div className='d-flex'>
+                <p className='font-face-om text-white font-50 me-2 mb-1'>$5,000</p>
+                <p className='font-face-om text-white font-22 pt-3 mb-1'>USD</p>
+              </div>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+                Buy Now
+              </button>
+            </>
+            }
+
+            {status === 'owned' &&
+            <>
+              <div className='d-flex'>
+                <p className='font-face-om text-white font-50 me-2 mb-1'>OWNED</p>
+              </div>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+                Share Relic
+              </button>
+            </>              
+            }
+            
+            {status === 'soldout' &&
+            <>
+              <div className='d-flex'>
+                <p className='font-face-om text-white font-50 me-2 mb-1'>SOLD OUT</p>
+              </div>
+              <button className='sub-button font-face-om font-29 border-none mt-2' onClick={claimClick}>
+                Get Notified
+              </button>
+            </>              
+            }
           </div>
         </div>
 

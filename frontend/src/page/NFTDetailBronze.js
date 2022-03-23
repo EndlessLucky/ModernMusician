@@ -32,6 +32,7 @@ export default function NFTDetailBronze() {
               <p className='text-white font-18 me-4 mb-0'>Bronze 1/100</p>
               <p className='text-white font-10 version-text mb-0'>S1</p>
             </div>
+            
             {status === 'register' &&
             <>
               <div className='d-flex'>
