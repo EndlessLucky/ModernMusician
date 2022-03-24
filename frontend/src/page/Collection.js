@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import Header from '../layout/Header';
+import Footer from '../layout/Footer';
 
 export default function Collection() {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ export default function Collection() {
 
   return(
     <>
+      <Header />
       <h1 className='text-white font-face-om text-center font-60 mt-5'>
         Your Collection
       </h1>
@@ -37,6 +40,7 @@ export default function Collection() {
           </div>
         </div>
       </div>      
+      <Footer />
     </>    
   )
 }
