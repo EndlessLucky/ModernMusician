@@ -17,7 +17,6 @@ function App() {
           <Route path="/tiers" element={<Tiers />} />
           <Route path="/nftdetailbronze" element={<NFTDetailBronze />} />
           <Route path='/nftdetaildiamond' element={<NFTDetailDiamond />} />
-
           <Route path="/collection" element={<Collection />} />
           <Route path="/authenticate" element={<Authenticate />} />
         </Routes>         
