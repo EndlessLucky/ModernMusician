@@ -57,8 +57,6 @@ export default function Tiers() {
     setUserNFTs(temp);
   };
 
-  console.log(userNFTs.length);
-
   return(
     <>
       <Header/>
