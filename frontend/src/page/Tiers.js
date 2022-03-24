@@ -52,10 +52,12 @@ export default function Tiers() {
     });
     // console.log("query result : ", res);   
 
-    // setUserNFTs(res);
-    var temp = ['1', '2']
-    setUserNFTs(temp);
+    setUserNFTs(res);
+    // var temp = ['1', '2']
+    // setUserNFTs(temp);
   };
+
+  console.log(userNFTs.length);
 
   return(
     <>
