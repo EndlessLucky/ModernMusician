@@ -1,22 +1,27 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import * as fcl from "@onflow/fcl";
 import { differenceInSeconds } from "date-fns";
+import { AuthState } from '@aws-amplify/ui-components';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import Timer from '../component/Timer';
 import { GET_ACCOUNT } from "../cadence/get_account";
+import { UserContext } from '../component/SecureViewContext';
 
-export default function Tiers() {
-  const navigate = useNavigate();
+export const Tiers = () => {
   const location = useLocation();
-  const authStatus = location.state.authStatus;
+  const history = useHistory();
+  // const authStatus = location.state.authStatus;
+  const authStatus = 'login';
   const [nfts, setNfts] = useState([]);
   const [userNFTs, setUserNFTs] = useState([]);
   const [user, setUser] = useState({ loggedIn: null });
   const liveDate = new Date("2022-02-28T01:30:22");
   const currentTime = new Date().getTime();
   const diffInSeconds = differenceInSeconds(liveDate, currentTime);
+  const context = useContext(UserContext);
 
   useEffect(() => {
     fcl.currentUser.subscribe(setUser);
@@ -27,10 +32,10 @@ export default function Tiers() {
   }, [user]);
 
   const bronzeClick = (status) => {
-    navigate('/nftdetailbronze', {state: {status: status}});
+    // history.push('/nftdetailbronze', {state: {status: status}});
   }
   const diamondClick = (status) => {
-    navigate('/nftdetaildiamond', {state: {status: status}});
+    // history.push('/nftdetaildiamond', {state: {status: status}});
   }
 
   const getAccountInfoQuery = async () => {
@@ -56,8 +61,6 @@ export default function Tiers() {
     var temp = ['1', '2']
     setUserNFTs(temp);
   };
-
-  console.log(userNFTs.length);
 
   return(
     <>
@@ -202,6 +205,9 @@ export default function Tiers() {
             </div>
           </div>
         </>
+      }
+      {context.authState === AuthState.SignedIn &&
+        <AmplifySignOut />
       }
       <Footer/>
     </>    

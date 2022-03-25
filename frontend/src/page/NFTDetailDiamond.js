@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useHistory } from "react-router-dom";
 import { Card, Accordion, Modal, Button, Table } from 'react-bootstrap';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
-export default function NFTDetailDiamond() {
-  const navigate = useNavigate();
+export const NFTDetailDiamond = () => {
   const [registerShow, setRegisterShow] = useState(false);
   const [loginShow, setLoginShow] = useState(false);
   const [availableShow, setAvailableShow] = useState(false);
   const [ownedShow, setOwnedShow] = useState(false);
   const [soldShow, setSoldShow] = useState(false);
-  const location = useLocation();
+  const history = useHistory();
   const status = location.state.status;
   const [registerId, setRegisterId] = useState(0);
   const [soldId, setSoldId] = useState(0);

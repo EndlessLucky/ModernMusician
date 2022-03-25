@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
-export default function Collection() {
-  const navigate = useNavigate();
+export const Collection = () => {
+  const history = useHistory();
 
   const marketplaceClick = () => {
-    navigate('/marketplace');
+    history.push('/marketplace');
   }
 
   return(

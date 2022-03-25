@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { AuthState } from '@aws-amplify/ui-components';
 import { AmplifyAuthenticator, AmplifySignOut, AmplifySignUp} from '@aws-amplify/ui-react';
 import Amplify, { Auth } from 'aws-amplify';
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import awsconfig from '../aws-exports';
+import { UserContext } from '../component/SecureViewContext';
 
 // var updatedConfig = awsconfig;
 // const currentUrl = window.location.href;
@@ -15,20 +17,35 @@ import awsconfig from '../aws-exports';
 // updatedConfig.oauth.redirectSignOut = redirectUrl;
 Amplify.configure(awsconfig);
 
-export default function Authenticate() {
+export const Authenticate = () => {
   const [showSignupForm, setShowSignupForm] = useState(false);
-  const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const history = useHistory();
+
+  console.log('context - ', context);
+
+  useEffect(() => {
+    console.log('##### - ', context.authState);
+    if(context.authState === AuthState.SignedIn && context.userId){
+      console.log('@@@@@@ - ', context.authState);
+      history.push('/tiers');
+    }
+  }, [context.authState]);
 
   const registerClick = () =>{
-    navigate('/tiers', {state: {authStatus: 'register'}});
+    history.push('/tiers', {state: {authStatus: 'register'}});
   }
 
   const loginClick = () =>{
-    navigate('/tiers', {state: {authStatus: 'login'}});
+    history.push('/tiers', {state: {authStatus: 'login'}});
   }
 
-  return(
+  return context.authState === AuthState.SignedIn && context.userId ?(
     <>
+      <AmplifySignOut />
+    </>
+  ) : (
+    <React.Fragment>
     {!showSignupForm && (
       <div className='container-85 m-auto' style={{'paddingTop': '100px'}}>
         <h1 className='text-white font-face-om text-center font-60'>
@@ -100,6 +117,6 @@ export default function Authenticate() {
         </p>
       </div>
     </div>
-    </>    
+    </React.Fragment>    
   )
 }

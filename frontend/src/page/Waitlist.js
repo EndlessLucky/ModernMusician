@@ -1,20 +1,22 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useContext } from 'react';
+import { useHistory } from "react-router-dom";
+import { AuthState } from '@aws-amplify/ui-components';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
+import { UserContext } from '../component/SecureViewContext';
 
-export default function Waitlist() {
-  const navigate = useNavigate();
+export const Waitlist = () => {
+  const history = useHistory();
+  const context = useContext(UserContext);
+
+  useEffect(() => {
+    if(context.authState === AuthState.SignedIn && context.userId){
+      history.push('/tiers');
+    }
+  }, []);
 
   const registerClick = () => {
-    navigate('/authenticate');
-  }
-
-  const bronzeClick = () => {
-    navigate('/bronze');
-  }
-
-  const diamondClick = () => {
-    navigate('/diamond');
+    history.push('/authenticate');
   }
 
   return(
@@ -38,13 +40,13 @@ export default function Waitlist() {
         <div className='row mt-5'>
           <div className='col-md-6'>
             <img src='Box_Bronze.jpg' alt='' width='100%' height='auto' />
-            <button className='sub-button font-face-om font-22 border-none mt-3' onClick={bronzeClick}>
+            <button className='sub-button font-face-om font-22 border-none mt-3'>
               FREE (100 only)
             </button>
           </div>
           <div className='col-md-6'>
             <img src='Box_Diamond.jpg' alt='' width='100%' height='auto' />
-            <button className='sub-button font-face-om font-22 border-none mt-3' onClick={diamondClick}>
+            <button className='sub-button font-face-om font-22 border-none mt-3'>
               DIAMOND (1 only)
             </button>
           </div>
