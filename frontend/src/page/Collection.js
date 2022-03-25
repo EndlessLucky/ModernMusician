@@ -10,6 +10,12 @@ export default function Collection () {
   const navigate = useNavigate();
   const context = useContext(UserContext);
 
+  useEffect(() => {
+    if(context.authState === AuthState.SignedOut){
+      navigate('/');
+    }
+  }, [context.authState]);
+
   const marketplaceClick = () => {
     navigate('/marketplace');
   }

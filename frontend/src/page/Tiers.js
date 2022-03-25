@@ -24,9 +24,16 @@ export default function Tiers () {
   const context = useContext(UserContext);
 
   useEffect(() => {
+    if(context.authState === AuthState.SignedOut){
+      navigate('/');
+    }
+  }, [context.authState]);
+
+  useEffect(() => {
     fcl.currentUser.subscribe(setUser);
     getAccountInfoQuery();
   }, []);
+
   useEffect(() => {
     getNFTAccount();
   }, [user]);

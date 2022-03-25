@@ -25,12 +25,10 @@ export default function Authenticate () {
   console.log('context - ', context);
 
   useEffect(() => {
-    console.log('##### - ', context.authState);
     if(context.authState === AuthState.SignedIn && context.userId){
-      console.log('@@@@@@ - ', context.authState);
       navigate('/tiers');
     }
-  }, [context.authState]);
+  });
 
   const registerClick = () =>{
     navigate('/tiers', {state: {authStatus: 'register'}});
@@ -40,11 +38,7 @@ export default function Authenticate () {
     navigate('/tiers', {state: {authStatus: 'login'}});
   }
 
-  return context.authState === AuthState.SignedIn && context.userId ?(
-    <>
-      <AmplifySignOut />
-    </>
-  ) : (
+  return (
     <React.Fragment>
     {!showSignupForm && (
       <div className='container-85 m-auto' style={{'paddingTop': '100px'}}>
@@ -56,7 +50,7 @@ export default function Authenticate () {
         </h3>
         
         <div className='d-flex mt-5'>
-          <Button variant="primary" className='fb-button font-26 d-flex'>
+          <Button variant="primary" className='fb-button font-26 d-flex' onClick={() => Auth.federatedSignIn({ provider: 'Facebook' })}>
             <div>
               <FontAwesomeIcon icon={faFacebook} className='font-60' /> 
             </div>          

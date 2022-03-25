@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card, Accordion, Modal, Button, Table } from 'react-bootstrap';
 import { AuthState } from '@aws-amplify/ui-components';
@@ -20,6 +20,12 @@ export default function NFTDetailDiamond () {
   const [soldId, setSoldId] = useState(0);
   const [shareText, setShareText] = useState('Copy Share Link');
   const context = useContext(UserContext);
+
+  useEffect(() => {
+    if(context.authState === AuthState.SignedOut){
+      navigate('/');
+    }
+  }, [context.authState]);
 
   const claimRegisterClick = () => setRegisterShow(true);
   const handleRegisterClose = () => {
