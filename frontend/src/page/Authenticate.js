@@ -8,12 +8,12 @@ import Amplify, { Auth } from 'aws-amplify';
 import { useNavigate } from "react-router-dom";
 import awsconfig from '../aws-exports';
 
-var updatedConfig = awsconfig;
-const currentUrl = window.location.href;
-const redirectUrl = currentUrl.split('/').slice(0, 3).join('/') + '/login/';
-updatedConfig.oauth.redirectSignIn = redirectUrl;
-updatedConfig.oauth.redirectSignOut = redirectUrl;
-Amplify.configure(updatedConfig);
+// var updatedConfig = awsconfig;
+// const currentUrl = window.location.href;
+// const redirectUrl = currentUrl.split('/').slice(0, 3).join('/') + '/login/';
+// updatedConfig.oauth.redirectSignIn = redirectUrl;
+// updatedConfig.oauth.redirectSignOut = redirectUrl;
+Amplify.configure(awsconfig);
 
 export default function Authenticate() {
   const [showSignupForm, setShowSignupForm] = useState(false);
@@ -76,11 +76,15 @@ export default function Authenticate() {
     )}
     {showSignupForm && (
       <>
-        {/* <AmplifyAuthenticator initialAuthState="signup">
-          <AmplifySignUp {...signUpProps} />
-        </AmplifyAuthenticator> */}
-        <Button variant='primary' onClick={registerClick}>Register</Button>
-        <Button variant='primary' onClick={loginClick}>Login</Button>
+        <AmplifyAuthenticator initialAuthState="signup">
+          <AmplifySignUp />
+        </AmplifyAuthenticator>
+
+        <div className='container-85 d-flex m-auto'>
+          <Button className='email-button font-26' onClick={() => setShowSignupForm(false)}>
+            Go Back
+          </Button>
+        </div>        
       </>
     )}    
 
