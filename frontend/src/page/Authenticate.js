@@ -6,7 +6,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { AuthState } from '@aws-amplify/ui-components';
 import { AmplifyAuthenticator, AmplifySignOut, AmplifySignUp} from '@aws-amplify/ui-react';
 import Amplify, { Auth } from 'aws-amplify';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import awsconfig from '../aws-exports';
 import { UserContext } from '../component/SecureViewContext';
 
@@ -17,10 +17,10 @@ import { UserContext } from '../component/SecureViewContext';
 // updatedConfig.oauth.redirectSignOut = redirectUrl;
 Amplify.configure(awsconfig);
 
-export const Authenticate = () => {
+export default function Authenticate () {
   const [showSignupForm, setShowSignupForm] = useState(false);
   const context = useContext(UserContext);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   console.log('context - ', context);
 
@@ -28,16 +28,16 @@ export const Authenticate = () => {
     console.log('##### - ', context.authState);
     if(context.authState === AuthState.SignedIn && context.userId){
       console.log('@@@@@@ - ', context.authState);
-      history.push('/tiers');
+      navigate('/tiers');
     }
   }, [context.authState]);
 
   const registerClick = () =>{
-    history.push('/tiers', {state: {authStatus: 'register'}});
+    navigate('/tiers', {state: {authStatus: 'register'}});
   }
 
   const loginClick = () =>{
-    history.push('/tiers', {state: {authStatus: 'login'}});
+    navigate('/tiers', {state: {authStatus: 'login'}});
   }
 
   return context.authState === AuthState.SignedIn && context.userId ?(

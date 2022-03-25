@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as fcl from "@onflow/fcl";
 import { differenceInSeconds } from "date-fns";
 import { AuthState } from '@aws-amplify/ui-components';
@@ -10,15 +10,15 @@ import Timer from '../component/Timer';
 import { GET_ACCOUNT } from "../cadence/get_account";
 import { UserContext } from '../component/SecureViewContext';
 
-export const Tiers = () => {
+export default function Tiers () {
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   // const authStatus = location.state.authStatus;
   const authStatus = 'login';
   const [nfts, setNfts] = useState([]);
   const [userNFTs, setUserNFTs] = useState([]);
   const [user, setUser] = useState({ loggedIn: null });
-  const liveDate = new Date("2022-02-28T01:30:22");
+  const liveDate = new Date("2022-04-28T01:30:22");
   const currentTime = new Date().getTime();
   const diffInSeconds = differenceInSeconds(liveDate, currentTime);
   const context = useContext(UserContext);
@@ -32,10 +32,10 @@ export const Tiers = () => {
   }, [user]);
 
   const bronzeClick = (status) => {
-    // history.push('/nftdetailbronze', {state: {status: status}});
+    navigate('/nftdetailbronze', {state: {status: status}});
   }
   const diamondClick = (status) => {
-    // history.push('/nftdetaildiamond', {state: {status: status}});
+    navigate('/nftdetaildiamond', {state: {status: status}});
   }
 
   const getAccountInfoQuery = async () => {
@@ -206,6 +206,7 @@ export const Tiers = () => {
           </div>
         </>
       }
+
       {context.authState === AuthState.SignedIn &&
         <AmplifySignOut />
       }

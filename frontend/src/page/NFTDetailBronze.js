@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Card, Accordion, Modal, Button, Table } from 'react-bootstrap';
+import { AuthState } from '@aws-amplify/ui-components';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
+import { UserContext } from '../component/SecureViewContext';
 
-export const NFTDetailBronze = () => {
-  const history = useHistory();
+export default function NFTDetailBronze () {
+  const navigate = useNavigate();
   const [registerShow, setRegisterShow] = useState(false);
   const [loginShow, setLoginShow] = useState(false);
   const [availableShow, setAvailableShow] = useState(false);
@@ -16,6 +19,7 @@ export const NFTDetailBronze = () => {
   const [registerId, setRegisterId] = useState(0);
   const [soldId, setSoldId] = useState(0);
   const [shareText, setShareText] = useState('Copy Share Link');
+  const context = useContext(UserContext);
 
   const claimRegisterClick = () => setRegisterShow(true);
   const handleRegisterClose = () => {
@@ -723,6 +727,9 @@ export const NFTDetailBronze = () => {
         </Modal>
 
       </div>
+      {context.authState === AuthState.SignedIn &&
+        <AmplifySignOut />
+      }
     <Footer/>
     </>    
   )

@@ -1,12 +1,17 @@
-import { useHistory } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthState } from '@aws-amplify/ui-components';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
+import { UserContext } from '../component/SecureViewContext';
 
-export const Collection = () => {
-  const history = useHistory();
+export default function Collection () {
+  const navigate = useNavigate();
+  const context = useContext(UserContext);
 
   const marketplaceClick = () => {
-    history.push('/marketplace');
+    navigate('/marketplace');
   }
 
   return(
@@ -39,7 +44,10 @@ export const Collection = () => {
             </button>
           </div>
         </div>
-      </div>      
+      </div>   
+      {context.authState === AuthState.SignedIn &&
+        <AmplifySignOut />
+      }   
       <Footer />
     </>    
   )

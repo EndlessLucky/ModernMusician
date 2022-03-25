@@ -1,22 +1,22 @@
 import { useEffect, useContext } from 'react';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthState } from '@aws-amplify/ui-components';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import { UserContext } from '../component/SecureViewContext';
 
-export const Waitlist = () => {
-  const history = useHistory();
+export default function Waitlist () {
+  const navigate = useNavigate();
   const context = useContext(UserContext);
 
   useEffect(() => {
-    if(context.authState === AuthState.SignedIn && context.userId){
-      history.push('/tiers');
+    if(context.authState === AuthState.SignedIn){
+      navigate('/tiers');
     }
-  }, []);
+  }, [context]);
 
   const registerClick = () => {
-    history.push('/authenticate');
+    navigate('/authenticate');
   }
 
   return(
