@@ -97,7 +97,12 @@ export async function mintNft(
       )
       console.log('buildRes : ', buildRes.events[0].data.id);
 
-      await createListing(address, buildRes.events[0].data.id, 1);
+      if(type == '1'){
+        await createListing(address, buildRes.events[0].data.id, 0);
+      }else if(type == '2'){
+        await createListing(address, buildRes.events[0].data.id, 5000);
+      }
+      
 
       resolve({id: buildRes.events[0].data.id});
     } catch (ex) {
